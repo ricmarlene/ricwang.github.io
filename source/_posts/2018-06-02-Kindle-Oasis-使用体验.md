@@ -2,7 +2,7 @@
 title: Kindle Oasis 使用体验
 date: 2018-06-02 00:29:21
 updated: 2018-06-02 00:29:21
-urlname: Kindle-Oasis-Review
+urlname: kindle-oasis-review
 description: 本文不会特别关注硬件配置等信息，只讲述个人的使用体验。详细硬件配置信息放在文末。
 categories:
 - 测评

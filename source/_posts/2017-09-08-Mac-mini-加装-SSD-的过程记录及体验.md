@@ -2,7 +2,7 @@
 title: Mac mini 加装 SSD 的过程记录及体验
 date: 2017-09-08 17:07:25
 updated: 2017-09-08 17:07:25
-urlname: Replace-the-HDD-with-SSD-in-Mac-mini
+urlname: replace-the-hdd-with-ssd-in-mac-mini
 description: 可以这样说，用了 SSD 以后，我最大的感受就是——我之前是多么有耐心。
 categories:
 - 硬件
