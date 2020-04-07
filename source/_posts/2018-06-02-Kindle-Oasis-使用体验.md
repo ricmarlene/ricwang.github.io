@@ -8,6 +8,7 @@ categories:
 - 测评
 tags:
 - Kindle
+- 测评
 ---
 
 ### 开箱

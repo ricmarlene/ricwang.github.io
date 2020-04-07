@@ -65,7 +65,13 @@ index_generator:
 # Category & Tag
 default_category: uncategorized
 category_map:
+  测评: review
+  小撇步: tips
+  随笔: essay
+  硬件: hardware
+  译制短片: translation
 tag_map:
+  测评: review
 
 # Metadata elements
 ## https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta
