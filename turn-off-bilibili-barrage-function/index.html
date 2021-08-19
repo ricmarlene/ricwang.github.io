@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"ricmarlene.github.io","root":"/","scheme":"Pisces","version":"7.7.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="获得清净体验">
+  <meta name="description" content="本文介绍如何通过正则表达式屏蔽 bilibili 中所有的弹幕，获得清净体验。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何彻底关闭 bilibili 的弹幕">
 <meta property="og:url" content="https://ricmarlene.github.io/turn-off-bilibili-barrage-function/index.html">
 <meta property="og:site_name" content="吉他六弦老是断">
-<meta property="og:description" content="获得清净体验">
+<meta property="og:description" content="本文介绍如何通过正则表达式屏蔽 bilibili 中所有的弹幕，获得清净体验。">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://ricmarlene.github.io/turn-off-bilibili-barrage-function/%E5%B1%8F%E8%94%BD%E8%AE%BE%E5%AE%9A.png">
 <meta property="og:image" content="https://ricmarlene.github.io/turn-off-bilibili-barrage-function/%E5%B1%8F%E8%94%BD%E6%AD%A3%E5%88%99.png">
@@ -205,7 +205,7 @@
   </span>
   
   
-            <div class="post-description">获得清净体验</div>
+            <div class="post-description">本文介绍如何通过正则表达式屏蔽 bilibili 中所有的弹幕，获得清净体验。</div>
 
         </div>
       </header>
@@ -216,7 +216,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>在网页端打开任意一个视频，点击右侧「弹幕列表」旁边的多选菜单，选择「屏蔽设定」</p>
+        <p>在 bilibili 观看视频时，如果完全不希望观看弹幕，可以点按视频下方的关闭按钮来关闭弹幕，但是有时候这个开关会被重置为「开」的状态，需要重新关闭，非常麻烦。</p>
+<p>通过正则表达式来屏蔽所有弹幕可以做到随账号在多个客户端上同步设置，保证不会再看到任何弹幕。</p>
+<p>在网页端打开任意一个视频，点击右侧「弹幕列表」旁边的菜单，选择「屏蔽设定」。</p>
 <p><img src="%E5%B1%8F%E8%94%BD%E8%AE%BE%E5%AE%9A.png" alt=""></p>
 <p>点击「屏蔽正则」，填写 /.*/ 并添加即可。</p>
 <p>（登陆同一个账号的情况写可以跨设备同步弹幕屏蔽设定）</p>
