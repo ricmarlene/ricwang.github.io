@@ -4,7 +4,7 @@
 
 # Site
 title: 吉他六弦老是断
-subtitle: dont be lazy
+subtitle: 随取随用
 description: ''
 keywords:
 author: Ric Wang
@@ -43,6 +43,9 @@ external_link:
 filename_case: 0
 render_drafts: false
 post_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
 relative_link: false
 future: true
 highlight:
