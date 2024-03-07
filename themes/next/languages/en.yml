@@ -1,3 +1,5 @@
+name: English
+
 title:
   archive: Archive
   category: Category
@@ -14,7 +16,6 @@ menu:
   schedule: Schedule
   sitemap: Sitemap
   commonweal: Commonweal 404
-  To会飞的章鱼: To Flying Octopus
 
 sidebar:
   overview: Overview
@@ -27,7 +28,6 @@ post:
   modified: Modified
   edit: Edit this post
   in: In
-  more: more
   read_more: Read more
   untitled: Untitled
   sticky: Sticky
@@ -41,7 +41,6 @@ post:
 
 footer:
   powered: "Powered by %s"
-  theme: Theme
   total_views: Total Views
   total_visitors: Total Visitors
 
