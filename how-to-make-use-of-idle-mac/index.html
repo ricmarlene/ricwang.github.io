@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#facee5">
+<meta name="generator" content="Hexo 7.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#facee5">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"ricmarlene.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="换了新电脑之后，我把闲置下来的 Mac mini Late 2012 当成一个简易的 NAS 系统，设置了下文件共享、远程下载器等。在配置过程由于步骤较多、较繁琐，本文将尽可能地详尽记录配置中遇到的问题以及解决方案。供之后重装系统时参阅。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="闲置Mac mini可以怎么玩">
+<meta property="og:url" content="https://ricmarlene.github.io/how-to-make-use-of-idle-mac/index.html">
+<meta property="og:site_name" content="吉他六弦老是断">
+<meta property="og:description" content="换了新电脑之后，我把闲置下来的 Mac mini Late 2012 当成一个简易的 NAS 系统，设置了下文件共享、远程下载器等。在配置过程由于步骤较多、较繁琐，本文将尽可能地详尽记录配置中遇到的问题以及解决方案。供之后重装系统时参阅。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-05-09T00:39:00.000Z">
+<meta property="article:modified_time" content="2022-05-09T00:39:00.000Z">
+<meta property="article:author" content="Ric Wang">
+<meta property="article:tag" content="Mac">
+<meta property="article:tag" content="Tips">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://ricmarlene.github.io/how-to-make-use-of-idle-mac/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>闲置Mac mini可以怎么玩 | 吉他六弦老是断</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">吉他六弦老是断</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">随取随用</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-to会飞的章鱼">
+
+    <a href="/forOctopus/" rel="section"><i class="fa fa-heart fa-fw"></i>To会飞的章鱼</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+  <div class="reading-progress-bar"></div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://ricmarlene.github.io/how-to-make-use-of-idle-mac/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.png">
+      <meta itemprop="name" content="Ric Wang">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="吉他六弦老是断">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          闲置Mac mini可以怎么玩
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-05-09 08:39:00" itemprop="dateCreated datePublished" datetime="2022-05-09T08:39:00+08:00">2022-05-09</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6/" itemprop="url" rel="index"><span itemprop="name">软件</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="far fa-comment"></i>
+      </span>
+      <span class="post-meta-item-text">Disqus：</span>
+    
+    <a title="disqus" href="/how-to-make-use-of-idle-mac/#disqus_thread" itemprop="discussionUrl">
+      <span class="post-comments-count disqus-comment-count" data-disqus-identifier="how-to-make-use-of-idle-mac/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+            <div class="post-description">换了新电脑之后，我把闲置下来的 Mac mini Late 2012 当成一个简易的 NAS 系统，设置了下文件共享、远程下载器等。在配置过程由于步骤较多、较繁琐，本文将尽可能地详尽记录配置中遇到的问题以及解决方案。供之后重装系统时参阅。</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="使用国内镜像安装-Homebrew"><a href="#使用国内镜像安装-Homebrew" class="headerlink" title="使用国内镜像安装 Homebrew"></a>使用国内镜像安装 <a target="_blank" rel="noopener" href="https://brew.idayer.com/">Homebrew</a></h1><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://cdn.jsdelivr.net/gh/ineo6/homebrew-install/install.sh)&quot;</span><br></pre></td></tr></table></figure>
+<p>将以上命令粘贴至终端。脚本内置中科大镜像，所以能让 Homebrew 安装的更快。</p>
+<h1 id="使用-Homebrew-安装-Aria2"><a href="#使用-Homebrew-安装-Aria2" class="headerlink" title="使用 Homebrew 安装 Aria2"></a>使用 Homebrew 安装 Aria2</h1><p>使用 Homebrew 命令 <code>brew install aria2</code> 安装 Aria2。<br>创建配置文件 <code>aria2.conf</code> 和空对话文件 <code>aria2.session</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">mkdir ~/.aria2 &amp;&amp; cd ~/.aria2</span><br><span class="line">touch aria2.conf</span><br><span class="line">touch aria2.session</span><br></pre></td></tr></table></figure>
+
+<p>我自己使用的配置文件在 <a href="#%E9%99%84%E5%BD%95"><strong>附录</strong></a> 部分，将配置文件中的内容拷贝到 <code>~/.aria2/aria2.conf</code> 即可。</p>
+<h1 id="破解-Sidecar-旧机型限制"><a href="#破解-Sidecar-旧机型限制" class="headerlink" title="破解 Sidecar 旧机型限制"></a>破解 Sidecar 旧机型限制</h1><p>Sidecar 作为 macOS Catalina 系统的主要更新功能之一，在 beta 测试时，曾支持过大部分的 Mac 机型，但在正式版放出时，去除了对使用体验不佳的老旧机型的支持。比如 Mac mini 系列只支持 2018 及之后的机型，主要原因是六代以前的 Intel CPU 对 HEVC 编码的支持不佳。  </p>
+<p>为了将手上一台支持 Sidecar 的 iPad Pro 10.5 和 Mac mini Late 2012 配合使用，可通过 GitHub 上的 <a target="_blank" rel="noopener" href="https://github.com/ben-z/free-sidecar">Free Sidecar</a> 破解 Sidecar 对旧机型的限制。 </p>
+<p>破解完成后，可以利用自动操作（Automator）App 来实现无屏幕快捷键启动 Sidecar（需要先将 iPad 连接至 Mac）。</p>
+<p>在 Mac 上的「自动操作」App 中，选取「文件」&gt;「新建」，选择「应用程序」，在左侧资源库中找到「运行AppleScript」，然后填入下列内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">on run &#123;input, parameters&#125;</span><br><span class="line">	tell application &quot;Finder&quot; to activate</span><br><span class="line">	tell application &quot;System Preferences&quot;</span><br><span class="line">		activate</span><br><span class="line">		reveal pane id &quot;com.apple.preference.displays&quot;</span><br><span class="line">		</span><br><span class="line">		delay 1</span><br><span class="line">		tell application &quot;System Events&quot; to click first pop up button of first window of application process &quot;System Preferences&quot; of application &quot;System Events&quot;</span><br><span class="line">		delay 1</span><br><span class="line">		tell application &quot;System Events&quot; to click last menu item of first menu of first pop up button of first window of application process &quot;System Preferences&quot; of application &quot;System Events&quot;</span><br><span class="line">		</span><br><span class="line">		quit</span><br><span class="line">	end tell</span><br><span class="line">end run</span><br></pre></td></tr></table></figure>
+
+<p>将其保存为应用程序文件后，可以用快捷键分配程序（我用的是 Manico）为其分配一个独立的快捷键，这样就可以很方便地在无屏幕时启动 Sidecar 了。</p>
+<h1 id="附录"><a href="#附录" class="headerlink" title="附录"></a>附录</h1><p>Aria2 配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br></pre></td><td class="code"><pre><span class="line">## &#x27;#&#x27;开头为注释内容, 选项都有相应的注释说明, 根据需要修改 ##</span><br><span class="line">## 被注释的选项填写的是默认值, 建议在需要修改时再取消注释  ##</span><br><span class="line"></span><br><span class="line">## 文件保存相关 ##</span><br><span class="line"></span><br><span class="line"># 文件的保存路径(可使用绝对路径或相对路径), 默认: 当前启动位置</span><br><span class="line">dir=/Volumes/Morty/DownloadsM/Aria2</span><br><span class="line"># 启用磁盘缓存, 0为禁用缓存, 需1.16以上版本, 默认:16M</span><br><span class="line">disk-cache=32M</span><br><span class="line"># 文件预分配方式, 能有效降低磁盘碎片, 默认:prealloc</span><br><span class="line"># 预分配所需时间: none &lt; falloc ? trunc &lt; prealloc</span><br><span class="line"># falloc和trunc则需要文件系统和内核支持</span><br><span class="line"># NTFS建议使用falloc, EXT3/4建议trunc, MAC 下需要注释此项</span><br><span class="line">#file-allocation=none</span><br><span class="line"># 断点续传</span><br><span class="line">continue=true</span><br><span class="line"></span><br><span class="line">## 下载连接相关 ##</span><br><span class="line"></span><br><span class="line"># 最大同时下载任务数, 运行时可修改, 默认:5</span><br><span class="line">#max-concurrent-downloads=5</span><br><span class="line"># 同一服务器连接数, 添加时可指定, 默认:1, 最大值16</span><br><span class="line">max-connection-per-server=5</span><br><span class="line"># 最小文件分片大小, 添加时可指定, 取值范围1M -1024M, 默认:20M</span><br><span class="line"># 假定size=10M, 文件为20MiB 则使用两个来源下载; 文件为15MiB 则使用一个来源下载</span><br><span class="line">min-split-size=10M</span><br><span class="line"># 单个任务最大线程数, 添加时可指定, 默认:5</span><br><span class="line">#split=5</span><br><span class="line"># 分片选择算法,有助于视频的边下边播同时兼顾减少建立连接的次数</span><br><span class="line">stream-piece-selector=geom</span><br><span class="line"># 整体下载速度限制, 运行时可修改, 默认:0</span><br><span class="line">#max-overall-download-limit=0</span><br><span class="line"># 单个任务下载速度限制, 默认:0</span><br><span class="line">#max-download-limit=0</span><br><span class="line"># 整体上传速度限制, 运行时可修改, 默认:0</span><br><span class="line">#max-overall-upload-limit=0</span><br><span class="line"># 单个任务上传速度限制, 默认:0</span><br><span class="line">#max-upload-limit=0</span><br><span class="line"># 禁用IPv6, 默认:false</span><br><span class="line">#disable-ipv6=true</span><br><span class="line"># 连接超时时间, 默认:60</span><br><span class="line">#timeout=60</span><br><span class="line"># 最大重试次数, 设置为0表示不限制重试次数, 默认:5</span><br><span class="line">#max-tries=5</span><br><span class="line"># 设置重试等待的秒数, 默认:0</span><br><span class="line">#retry-wait=0</span><br><span class="line"></span><br><span class="line">## 进度保存相关 ##</span><br><span class="line"></span><br><span class="line"># 日志文件</span><br><span class="line">log-level=notice</span><br><span class="line">log=$&#123;HOME&#125;/.aria2/aria2.log</span><br><span class="line"># 从会话文件中读取下载任务</span><br><span class="line"># 需提前创建一个空文件否则会报错</span><br><span class="line">input-file=$&#123;HOME&#125;/.aria2/aria2.session</span><br><span class="line"># 在Aria2退出时保存`错误/未完成`的下载任务到会话文件</span><br><span class="line">save-session=$&#123;HOME&#125;/.aria2/aria2.session</span><br><span class="line"># 定时保存会话, 0为退出时才保存, 需1.16.1以上版本, 默认:0</span><br><span class="line">save-session-interval=60</span><br><span class="line"></span><br><span class="line"># 强制保存会话, 即使任务已经完成, 默认:false</span><br><span class="line"># 较新的版本开启后会在任务完成后依然保留.aria2文件</span><br><span class="line">#force-save=true</span><br><span class="line"></span><br><span class="line">## RPC相关设置 ##</span><br><span class="line"></span><br><span class="line"># 启用RPC, 默认:false</span><br><span class="line">enable-rpc=true</span><br><span class="line"># 允许所有来源, 默认:false</span><br><span class="line">rpc-allow-origin-all=true</span><br><span class="line"># 允许非外部访问, 默认:false</span><br><span class="line">rpc-listen-all=true</span><br><span class="line"># RPC监听端口, 端口被占用时可以修改, 默认:6800</span><br><span class="line">rpc-listen-port=6800</span><br><span class="line"># 设置的RPC授权令牌</span><br><span class="line"># 此处使用`openssl rand -base64 32`命令生成&lt;TOKEN&gt;</span><br><span class="line">#rpc-secret=&lt;TOKEN&gt;</span><br><span class="line"># 是否启用 RPC 服务的 SSL/TLS 加密,</span><br><span class="line"># 启用加密后 RPC 服务需要使用 https 或者 wss 协议连接</span><br><span class="line">#rpc-secure=true</span><br><span class="line"># 在 RPC 服务中启用 SSL/TLS 加密时的证书文件,</span><br><span class="line"># 使用 PEM 格式时，您必须通过 --rpc-private-key 指定私钥</span><br><span class="line">#rpc-certificate=/path/to/certificate.pem</span><br><span class="line"># 在 RPC 服务中启用 SSL/TLS 加密时的私钥文件</span><br><span class="line">#rpc-private-key=/path/to/certificate.key</span><br><span class="line"></span><br><span class="line">## HTTP 设置 ##</span><br><span class="line"></span><br><span class="line"># 自定义 User Agent</span><br><span class="line">user-agent=Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.85 Safari/537.36</span><br><span class="line"></span><br><span class="line">## BT/PT下载相关 ##</span><br><span class="line"></span><br><span class="line"># 当下载的是一个种子(以.torrent结尾)时, 自动开始BT任务, 默认:true</span><br><span class="line">follow-torrent=true</span><br><span class="line"># BT监听端口, 当端口被屏蔽时使用, 默认:6881-6999</span><br><span class="line">listen-port=6881-6999</span><br><span class="line"># 单个种子最大连接数, 默认:55</span><br><span class="line">#bt-max-peers=55</span><br><span class="line"></span><br><span class="line">### DHT 功能, 仅对 BT 生效, PT 无效###</span><br><span class="line"># 打开 DHT (IPv4) 功能</span><br><span class="line">enable-dht=true</span><br><span class="line"># 打开 DHT (IPv6) 功能</span><br><span class="line">enable-dht6=true</span><br><span class="line"># DHT网络监听端口, 默认:6881-6999</span><br><span class="line">dht-listen-port=6881-6999</span><br><span class="line"># 本地节点查找</span><br><span class="line">bt-enable-lpd=true</span><br><span class="line"># 种子交换</span><br><span class="line">enable-peer-exchange=true</span><br><span class="line"># DHT (IPv4) 路由表文件路径</span><br><span class="line">dht-file-path=$&#123;HOME&#125;/.aria2/dht.dat</span><br><span class="line"># DHT (IPv6) 路由表文件路径</span><br><span class="line">dht-file-path6=$&#123;HOME&#125;/.aria2/dht6.dat</span><br><span class="line"></span><br><span class="line"># 客户端伪装, PT需要</span><br><span class="line">peer-id-prefix=-UT341-</span><br><span class="line">peer-agent=uTorrent/341(109279400)(30888)</span><br><span class="line"></span><br><span class="line"># 同一服务器连接数</span><br><span class="line"># 每个种子限速, 对少种的PT很有用, 默认:50K</span><br><span class="line">#bt-request-peer-speed-limit=50K</span><br><span class="line"># 当种子的分享率达到这个数时, 自动停止做种, 0为一直做种, 默认:1.0</span><br><span class="line">seed-ratio=0</span><br><span class="line"># BT校验相关, 默认:true</span><br><span class="line">#bt-hash-check-seed=true</span><br><span class="line"># 继续之前的BT任务时, 无需再次校验, 默认:false</span><br><span class="line">bt-seed-unverified=true</span><br><span class="line"># 保存磁力链接元数据为种子文件(.torrent文件), 默认:false</span><br><span class="line">bt-save-metadata=true</span><br><span class="line"></span><br><span class="line"># BT 服务器地址</span><br><span class="line"># 逗号分隔的 BT 服务器地址. 如果服务器地址在 --bt-exclude-tracker 选项中, 其将不会生效.</span><br><span class="line">bt-tracker=http://1337.abcvg.info:80/announce,http://207.241.226.111:6969/announce,http://207.241.231.226:6969/announce,http://[2001:1b10:1000:8101:0:242:ac11:2]:6969/announce,http://[2001:470:1:189:0:1:2:3]:6969/announce,http://[2a04:ac00:1:3dd8::1:2710]:2710/announce,http://bt.okmp3.ru:2710/announce,http://fxtt.ru:80/announce,http://home.yxgz.vip:6969/announce,http://mediaclub.tv:80/announce.php,http://milanesitracker.tekcities.com:80/announce,http://nyaa.tracker.wf:7777/announce,http://open.acgnxtracker.com:80/announce,http://open.tracker.ink:6969/announce,http://opentracker.i2p.rocks:6969/announce,http://opentracker.xyz:80/announce,http://pow7.com:80/announce,http://retracker.hotplug.ru:2710/announce,http://rt.optizone.ru:80/announce,http://share.camoe.cn:8080/announce,http://t.acg.rip:6699/announce,http://t.nyaatracker.com:80/announce,http://t.overflow.biz:6969/announce,http://torrenttracker.nwc.acsalaska.net:6969/announce,http://tracker.birkenwald.de:6969/announce,http://tracker.bt4g.com:2095/announce,http://tracker.dler.org:6969/announce,http://tracker.files.fm:6969/announce,http://tracker.gbitt.info:80/announce,http://tracker.ipv6tracker.ru:80/announce,http://tracker.lelux.fi:80/announce,http://tracker.loadbt.com:6969/announce,http://tracker.mywaifu.best:6969/announce,http://tracker.opentrackr.org:1337/announce,http://tracker.srv00.com:6969/announce,http://tracker.zerobytes.xyz:1337/announce,http://tracker1.itzmx.com:8080/announce,http://tracker2.dler.org:80/announce,http://vps02.net.orel.ru:80/announce,https://1337.abcvg.info:443/announce,https://carbon-bonsai-621.appspot.com:443/announce,https://chihaya-heroku.120181311.xyz:443/announce,https://opentracker.cc:443/announce,https://opentracker.i2p.rocks:443/announce,https://tp.m-team.cc:443/announce.php,https://tr.abiir.top:443/announce,https://tr.abir.ga:443/announce,https://tr.abirxo.cf:443/announce,https://tr.burnabyhighstar.com:443/announce,https://tr.doogh.club:443/announce,https://tr.fuckbitcoin.xyz:443/announce,https://tr.highstar.shop:443/announce,https://tr.ready4.icu:443/announce,https://tr.torland.ga:443/announce,https://tracker.babico.name.tr:443/announce,https://tracker.foreverpirates.co:443/announce,https://tracker.imgoingto.icu:443/announce,https://tracker.iriseden.fr:443/announce,https://tracker.kuroy.me:443/announce,https://tracker.lelux.fi:443/announce,https://tracker.lilithraws.cf:443/announce,https://tracker.lilithraws.org:443/announce,https://tracker.nanoha.org:443/announce,https://tracker.nitrix.me:443/announce,https://tracker.yarr.pt:443/announce,https://trackme.theom.nz:443/announce,udp://207.241.226.111:6969/announce,udp://207.241.231.226:6969/announce,udp://212.1.226.176:2710/announce,udp://52.58.128.163:6969/announce,udp://6ahddutb1ucc3cp.ru:6969/announce,udp://78.30.254.12:2710/announce,udp://9.rarbg.com:2810/announce,udp://91.216.110.52:451/announce,udp://[2001:1b10:1000:8101:0:242:ac11:2]:6969/announce,udp://[2001:470:1:189:0:1:2:3]:6969/announce,udp://[2a03:7220:8083:cd00::1]:451/announce,udp://[2a04:ac00:1:3dd8::1:2710]:2710/announce,udp://[2a0f:e586:f:f::220]:6969/announce,udp://abufinzio.monocul.us:6969/announce,udp://admin.videoenpoche.info:6969/announce,udp://bclearning.top:6969/announce,udp://bt1.archive.org:6969/announce,udp://bt2.archive.org:6969/announce,udp://bubu.mapfactor.com:6969/announce,udp://camera.lei001.com:6969/announce,udp://concen.org:6969/announce,udp://cutiegirl.ru:6969/announce,udp://engplus.ru:6969/announce,udp://exodus.desync.com:6969/announce,udp://fe.dealclub.de:6969/announce,udp://inferno.demonoid.is:3391/announce,udp://ipv4.tracker.harry.lu:80/announce,udp://ipv6.tracker.harry.lu:80/announce,udp://ipv6.tracker.monitorit4.me:6969/announce,udp://mirror.aptus.co.tz:6969/announce,udp://movies.zsw.ca:6969/announce,udp://mts.tvbit.co:6969/announce,udp://open.demonii.com:1337/announce,udp://open.stealth.si:80/announce,udp://open.tracker.cl:1337/announce,udp://open.tracker.ink:6969/announce,udp://opentor.org:2710/announce,udp://opentracker.i2p.rocks:6969/announce,udp://p4p.arenabg.com:1337/announce,udp://pow7.com:80/announce,udp://public.publictracker.xyz:6969/announce,udp://public.tracker.vraphim.com:6969/announce,udp://retracker.hotplug.ru:2710/announce,udp://retracker.lanta-net.ru:2710/announce,udp://retracker.netbynet.ru:2710/announce,udp://run.publictracker.xyz:6969/announce,udp://torrentclub.space:6969/announce,udp://tr.bangumi.moe:6969/announce,udp://tr.cili001.com:8070/announce,udp://tracker.0x.tf:6969/announce,udp://tracker.altrosky.nl:6969/announce,udp://tracker.auctor.tv:6969/announce,udp://tracker.babico.name.tr:8000/announce,udp://tracker.beeimg.com:6969/announce,udp://tracker.birkenwald.de:6969/announce,udp://tracker.bitsearch.to:1337/announce,udp://tracker.cyberia.is:6969/announce,udp://tracker.ddunlimited.net:6969/announce,udp://tracker.dler.com:6969/announce,udp://tracker.dler.org:6969/announce,udp://tracker.edkj.club:6969/announce,udp://tracker.fatkhoala.org:13710/announce,udp://tracker.filemail.com:6969/announce,udp://tracker.htp.re:4444/announce,udp://tracker.jordan.im:6969/announce,udp://tracker.lelux.fi:6969/announce,udp://tracker.loadbt.com:6969/announce,udp://tracker.moeking.me:6969/announce,udp://tracker.monitorit4.me:6969/announce,udp://tracker.openbittorrent.com:6969/announce,udp://tracker.opentrackr.org:1337/announce,udp://tracker.pomf.se:80/announce,udp://tracker.skyts.net:6969/announce,udp://tracker.srv00.com:6969/announce,udp://tracker.swarm3.network:6969/announce,udp://tracker.sylphix.com:6969/announce,udp://tracker.theoks.net:6969/announce,udp://tracker.tiny-vps.com:6969/announce,udp://tracker.torrent.eu.org:451/announce,udp://tracker.zerobytes.xyz:1337/announce,udp://tracker1.bt.moack.co.kr:80/announce,udp://tracker1.itzmx.com:8080/announce,udp://tracker2.dler.com:80/ann我不知道你还要骗我多少次ounce,udp://tracker2.dler.org:80/announce,udp://tracker2.itzmx.com:6961/announce,udp://tracker3.itzmx.com:6961/announce,udp://tracker4.itzmx.com:2710/announce,udp://tracker6.lelux.fi:6969/announce,udp://u4.trakx.crim.ist:1337/announce,udp://vibe.sleepyinternetfun.xyz:1738/announce,udp://www.torrent.eu.org:451/announce,ws://hub.bugout.link:80/announce,wss://tracker.openwebtorrent.com:443/announce</span><br><span class="line"># BT 排除服务器地址</span><br><span class="line">bt-exclude-tracker=</span><br><span class="line"></span><br><span class="line"># 启用后台进程</span><br><span class="line">daemon=false</span><br><span class="line"></span><br><span class="line"># 部分事件hook, 调用第三方命令:/path/to/command</span><br><span class="line"># BT下载完成(如有做种将包含做种，如需调用请务必确定设定完成做种条件)</span><br><span class="line"># on-bt-download-complete=$&#123;HOME&#125;/.aria2/download-complete-hook.sh</span><br><span class="line"># 下载完成</span><br><span class="line"># on-download-complete=$&#123;HOME&#125;/.aria2/download-complete-hook.sh</span><br><span class="line"># 下载错误</span><br><span class="line"># on-download-error=</span><br><span class="line"></span><br><span class="line"># 代理 仅支持 HTTP 协议</span><br><span class="line">#all-proxy=http://127.0.0.1:1087</span><br></pre></td></tr></table></figure>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Mac/" rel="tag"># Mac</a>
+              <a href="/tags/Tips/" rel="tag"># Tips</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/turn-off-bilibili-barrage-function/" rel="prev" title="如何彻底关闭 bilibili 的弹幕">
+      <i class="fa fa-chevron-left"></i> 如何彻底关闭 bilibili 的弹幕
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/how-to-watch-movie-together-with-non-local-friends/" rel="next" title="如何和异地的朋友一起看电影">
+      如何和异地的朋友一起看电影 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    
+  <div class="comments">
+    <div id="disqus_thread">
+      <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+    </div>
+  </div>
+  
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E5%AE%89%E8%A3%85-Homebrew"><span class="nav-number">1.</span> <span class="nav-text">使用国内镜像安装 Homebrew</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-Homebrew-%E5%AE%89%E8%A3%85-Aria2"><span class="nav-number">2.</span> <span class="nav-text">使用 Homebrew 安装 Aria2</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%A0%B4%E8%A7%A3-Sidecar-%E6%97%A7%E6%9C%BA%E5%9E%8B%E9%99%90%E5%88%B6"><span class="nav-number">3.</span> <span class="nav-text">破解 Sidecar 旧机型限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">附录</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Ric Wang"
+      src="/images/avatar.png">
+  <p class="site-author-name" itemprop="name">Ric Wang</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/ricmarlene" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;ricmarlene" rel="noopener" target="_blank"><i class="github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://weibo.com/u/5219360564" title="Weibo → https:&#x2F;&#x2F;weibo.com&#x2F;u&#x2F;5219360564" rel="noopener" target="_blank"><i class="weibo fa-fw"></i>Weibo</a>
+      </span>
+  </div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2024</span>
+  <span class="with-love">
+    <i class="user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Ric Wang</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ricmarlene.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://ricmarlene.github.io/how-to-make-use-of-idle-mac/";
+    this.page.identifier = "how-to-make-use-of-idle-mac/";
+    this.page.title = "闲置Mac mini可以怎么玩";
+    };
+  NexT.utils.loadComments(document.querySelector('#disqus_thread'), () => {
+    if (window.DISQUS) {
+      DISQUS.reset({
+        reload: true,
+        config: disqus_config
+      });
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://ricmarlene.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', '' + +new Date());
+      (d.head || d.body).appendChild(s);
+    }
+  });
+</script>
+
+</body>
+</html>
